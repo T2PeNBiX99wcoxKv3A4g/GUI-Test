@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl3grrqbi2skp"]
+
+[ext_resource type="Texture2D" uid="uid://d3pvwkjfsenil" path="res://icons/x.svg" id="1_tydov"]
+[ext_resource type="Script" uid="uid://knk30oxmseg5" path="res://scripts/SystemButton.cs" id="1_xb4ne"]
+
+[node name="SystemButton" type="ColorRect"]
+custom_minimum_size = Vector2(50, 0)
+offset_right = 50.0
+size_flags_horizontal = 3
+color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+script = ExtResource("1_xb4ne")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_tydov")
+expand_mode = 1
+
+[connection signal="gui_input" from="." to="." method="OnGuiInput"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExited"]

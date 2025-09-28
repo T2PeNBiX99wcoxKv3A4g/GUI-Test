@@ -1,0 +1,27 @@
+Subject: [PATCH] format
+---
+Index: SceneNodeResolver/SceneNodeAttribute.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/SceneNodeResolver/SceneNodeAttribute.cs b/SceneNodeResolver/SceneNodeAttribute.cs
+--- a/SceneNodeResolver/SceneNodeAttribute.cs	(revision 740142c3f03b4af8c19b6831e9441d8632fb2d61)
++++ b/SceneNodeResolver/SceneNodeAttribute.cs	(date 1759007873274)
+@@ -3,14 +3,9 @@
+ using System;
+ 
+ [AttributeUsage(AttributeTargets.Field)]
+-public class SceneNodeAttribute : Attribute
++public class SceneNodeAttribute(string nodePath) : Attribute
+ {
+-    public string NodePath { get; }
+-
+-    public SceneNodeAttribute(string nodePath)
+-    {
+-        NodePath = nodePath;
+-    }
++    public string NodePath { get; } = nodePath;
+ }
+ 
+ public interface ISceneNodeResolver

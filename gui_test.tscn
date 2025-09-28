@@ -1,0 +1,201 @@
+[gd_scene load_steps=18 format=3 uid="uid://caugk844j81se"]
+
+[ext_resource type="Script" uid="uid://dpuoby8j53ofm" path="res://scripts/TabContainer.cs" id="1_66m6g"]
+[ext_resource type="Texture2D" uid="uid://bl64kjm8fxykm" path="res://icons/menu.svg" id="1_jcvd2"]
+[ext_resource type="Script" uid="uid://bfkn0duyat6s6" path="res://scripts/ToggleButton.cs" id="1_wj403"]
+[ext_resource type="PackedScene" uid="uid://bgtksx2lcrfwg" path="res://components/nav_item.tscn" id="3_wj403"]
+[ext_resource type="Script" uid="uid://4mdsqu4p1a1f" path="res://scripts/SideBarAnimPlayer.cs" id="4_0r7qg"]
+[ext_resource type="Script" uid="uid://dytp6avsmjysk" path="res://scripts/Titlebar.cs" id="4_373u5"]
+[ext_resource type="Texture2D" uid="uid://daku8y77ubbbt" path="res://icons/book.svg" id="4_k1go3"]
+[ext_resource type="PackedScene" uid="uid://bl3grrqbi2skp" path="res://components/system_button.tscn" id="5_373u5"]
+[ext_resource type="Texture2D" uid="uid://cxabvf5v8ulej" path="res://icons/briefcase.svg" id="5_pxv70"]
+[ext_resource type="Texture2D" uid="uid://bg087ylsawrck" path="res://icons/minus.svg" id="6_yijf6"]
+[ext_resource type="Texture2D" uid="uid://lone576jppoh" path="res://icons/settings.svg" id="7_5bb1f"]
+[ext_resource type="Texture2D" uid="uid://bgrcs8eh8ocps" path="res://icons/maximize.svg" id="7_hjotk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4uxl"]
+bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcvd2"]
+bg_color = Color(0.21176471, 0.21176471, 0.32941177, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="Animation" id="Animation_u6hrl"]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sidebar:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jcvd2"]
+resource_name = "sidebar_anim"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sidebar:custom_minimum_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(70, 0), Vector2(200, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wj403"]
+_data = {
+&"RESET": SubResource("Animation_u6hrl"),
+&"sidebar_anim": SubResource("Animation_jcvd2")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e4uxl")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Sidebar" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jcvd2")
+
+[node name="TabContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_66m6g")
+
+[node name="TopContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/TabContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ToggleButton" type="Control" parent="HBoxContainer/Sidebar/TabContainer/TopContainer"]
+custom_minimum_size = Vector2(40, 50)
+layout_mode = 2
+script = ExtResource("1_wj403")
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_vertical = 2
+texture = ExtResource("1_jcvd2")
+expand_mode = 1
+
+[node name="NavItem" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_name = "Test1"
+
+[node name="NavItem2" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_icon = ExtResource("5_pxv70")
+_name = "Test2"
+
+[node name="NavItem3" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_icon = ExtResource("4_k1go3")
+_name = "Test3"
+
+[node name="NavItem4" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_name = "Test4"
+
+[node name="NavItem5" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_name = "Test5"
+
+[node name="BottomContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/TabContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Settings" parent="HBoxContainer/Sidebar/TabContainer/BottomContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+_icon = ExtResource("7_5bb1f")
+_name = "Settings"
+
+[node name="Body" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Topbar" type="HBoxContainer" parent="HBoxContainer/Body"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Titlebar" type="Control" parent="HBoxContainer/Body/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_373u5")
+
+[node name="SystemButtons" type="HBoxContainer" parent="HBoxContainer/Body/Topbar"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MinButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
+layout_mode = 2
+_type = 2
+_icon = ExtResource("6_yijf6")
+
+[node name="MaxButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
+layout_mode = 2
+_type = 1
+_icon = ExtResource("7_hjotk")
+
+[node name="CloseButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
+layout_mode = 2
+_hoverColor = Color(0.76862746, 0.16862746, 0.10980392, 1)
+
+[node name="SideBarAnimPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HBoxContainer")
+libraries = {
+&"": SubResource("AnimationLibrary_wj403")
+}
+script = ExtResource("4_0r7qg")
+
+[connection signal="gui_input" from="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton" to="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton" method="OnGuiInput"]
+[connection signal="gui_input" from="HBoxContainer/Body/Topbar/Titlebar" to="HBoxContainer/Body/Topbar/Titlebar" method="OnGuiInput"]

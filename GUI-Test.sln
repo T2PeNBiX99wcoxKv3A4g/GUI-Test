@@ -1,0 +1,27 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI-Test", "GUI-Test.csproj", "{5ED63DC1-CD37-40CD-8F8C-333522691286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codartesien.SourceGenerators", "godot-source-generators-csharp\Codartesien.SourceGenerators.csproj", "{9402AEBF-65BD-4780-9A99-A9B873528D06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{5ED63DC1-CD37-40CD-8F8C-333522691286}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{9402AEBF-65BD-4780-9A99-A9B873528D06}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgtksx2lcrfwg"]
+
+[ext_resource type="Script" uid="uid://d1xlm7mwxeme8" path="res://scripts/NavItem.cs" id="1_26eoq"]
+[ext_resource type="Texture2D" uid="uid://cwktb7rgqv7o7" path="res://icons/home.svg" id="1_x0aoe"]
+[ext_resource type="StyleBox" uid="uid://ct0e2obkv4onn" path="res://styles/NavItem/Background.tres" id="2_7rikv"]
+
+[node name="NavItem" type="Control"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_26eoq")
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_7rikv")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_x0aoe")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -25.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nav Item"
+vertical_alignment = 1
+clip_text = true
+
+[connection signal="gui_input" from="BG" to="." method="OnBGGuiInput"]
+[connection signal="mouse_entered" from="BG" to="." method="OnBGMouseEntered"]
+[connection signal="mouse_exited" from="BG" to="." method="OnBGMouseExited"]

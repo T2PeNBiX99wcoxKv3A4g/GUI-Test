@@ -1,0 +1,43 @@
+<Project Sdk="Godot.NET.Sdk/4.5.0">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <RootNamespace>GUITest</RootNamespace>
+        <LangVersion>default</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="godot-source-generators-csharp\Codartesien.SourceGenerators.csproj" OutputItemType="Analyzer"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="godot-source-generators-csharp\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="godot-source-generators-csharp\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Remove="Godot.SourceGenerators" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Remove="GodotSharpEditor" />
+      <PackageReference Remove="Godot.SourceGenerators" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Remove="GodotSharpEditor" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Remove="Godot.SourceGenerators" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Remove="GodotSharpEditor" />
+      <PackageReference Remove="Godot.SourceGenerators" />
+      <PackageReference Remove="GodotSharp" />
+      <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="godot-source-generators-csharp-format.patch" />
+    </ItemGroup>
+</Project>

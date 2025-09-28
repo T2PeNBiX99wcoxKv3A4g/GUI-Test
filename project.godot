@@ -1,0 +1,44 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GUI-Test"
+run/main_scene="uid://caugk844j81se"
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 0)
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalResolver="*res://scripts/GlobalResolver.cs"
+
+[display]
+
+window/size/transparent=true
+window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
+
+[dotnet]
+
+project/assembly_name="GUI-Test"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/lua-gdextension/plugin.cfg")
+
+[rendering]
+
+viewport/transparent_background=true
