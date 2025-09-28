@@ -32,5 +32,6 @@
         <Content Include="**\*.lua"/>
         <Content Remove="addons\**"/>
         <Content Remove="godot-source-generators-csharp\**"/>
+        <Content Include="LICENSE" />
     </ItemGroup>
 </Project>
