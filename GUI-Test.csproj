@@ -38,6 +38,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include=".gitignore" />
       <Content Include="godot-source-generators-csharp-format.patch" />
     </ItemGroup>
 </Project>
