@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://caugk844j81se"]
+[gd_scene load_steps=22 format=3 uid="uid://caugk844j81se"]
 
+[ext_resource type="Theme" uid="uid://d38kgk7ybgfol" path="res://styles/MainTheme.tres" id="1_7skou"]
 [ext_resource type="Script" uid="uid://dpuoby8j53ofm" path="res://scripts/TabContainer.cs" id="1_66m6g"]
 [ext_resource type="Texture2D" uid="uid://bl64kjm8fxykm" path="res://icons/menu.svg" id="1_jcvd2"]
 [ext_resource type="Script" uid="uid://bfkn0duyat6s6" path="res://scripts/ToggleButton.cs" id="1_wj403"]
@@ -12,14 +13,24 @@
 [ext_resource type="Texture2D" uid="uid://bg087ylsawrck" path="res://icons/minus.svg" id="6_yijf6"]
 [ext_resource type="Texture2D" uid="uid://lone576jppoh" path="res://icons/settings.svg" id="7_5bb1f"]
 [ext_resource type="Texture2D" uid="uid://bgrcs8eh8ocps" path="res://icons/maximize.svg" id="7_hjotk"]
+[ext_resource type="StyleBox" uid="uid://b4r3sg5qjgjer" path="res://styles/CheckButton/FocusEmpty.tres" id="12_66m6g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4uxl"]
 bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66m6g"]
+bg_color = Color(0.18039216, 0.18039216, 0.27450982, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcvd2"]
 bg_color = Color(0.21176471, 0.21176471, 0.32941177, 1)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bb1f"]
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="Animation" id="Animation_u6hrl"]
 length = 0.1
@@ -65,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7skou")
 
 [node name="BG" type="Panel" parent="."]
 layout_mode = 1
@@ -73,7 +85,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7skou")
 theme_override_styles/panel = SubResource("StyleBoxFlat_e4uxl")
+
+[node name="TitleBG" type="Panel" parent="BG"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_7skou")
+theme_override_styles/panel = SubResource("StyleBoxFlat_66m6g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -82,14 +104,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7skou")
 theme_override_constants/separation = 0
 
 [node name="Sidebar" type="Panel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
+theme = ExtResource("1_7skou")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jcvd2")
 
-[node name="TabContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar"]
+[node name="TabContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar" node_paths=PackedStringArray("_titleLabel")]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -97,17 +121,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7skou")
 script = ExtResource("1_66m6g")
+_titleLabel = NodePath("../../Body/Topbar/Titlebar/Title")
 
 [node name="TopContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/TabContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_7skou")
 
 [node name="ToggleButton" type="Control" parent="HBoxContainer/Sidebar/TabContainer/TopContainer"]
 custom_minimum_size = Vector2(40, 50)
 layout_mode = 2
+theme = ExtResource("1_7skou")
 script = ExtResource("1_wj403")
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton"]
@@ -121,74 +149,367 @@ offset_top = -15.0
 offset_right = 50.0
 offset_bottom = 15.0
 grow_vertical = 2
+theme = ExtResource("1_7skou")
 texture = ExtResource("1_jcvd2")
 expand_mode = 1
 
-[node name="NavItem" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Home" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
 layout_mode = 2
-_name = "Test1"
+theme = ExtResource("1_7skou")
+_name = "Home"
+Page = NodePath("../../../../Body/Pages/Home")
 
-[node name="NavItem2" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _icon = ExtResource("5_pxv70")
+_name = "Test"
+Page = NodePath("../../../../Body/Pages/Test")
+
+[node name="Test2" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+layout_mode = 2
+theme = ExtResource("1_7skou")
+_icon = ExtResource("4_k1go3")
 _name = "Test2"
 
-[node name="NavItem3" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test3" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
 layout_mode = 2
-_icon = ExtResource("4_k1go3")
+theme = ExtResource("1_7skou")
 _name = "Test3"
 
-[node name="NavItem4" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test4" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _name = "Test4"
-
-[node name="NavItem5" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
-layout_mode = 2
-_name = "Test5"
 
 [node name="BottomContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/TabContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_7skou")
 
-[node name="Settings" parent="HBoxContainer/Sidebar/TabContainer/BottomContainer" instance=ExtResource("3_wj403")]
+[node name="Settings" parent="HBoxContainer/Sidebar/TabContainer/BottomContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _icon = ExtResource("7_5bb1f")
 _name = "Settings"
+Page = NodePath("../../../../Body/Pages/Settings")
 
 [node name="Body" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_7skou")
 theme_override_constants/separation = 0
 
 [node name="Topbar" type="HBoxContainer" parent="HBoxContainer/Body"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_7skou")
 theme_override_constants/separation = 0
 
 [node name="Titlebar" type="Control" parent="HBoxContainer/Body/Topbar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_7skou")
 script = ExtResource("4_373u5")
+
+[node name="Title" type="Label" parent="HBoxContainer/Body/Topbar/Titlebar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -13.0
+offset_right = 147.0
+offset_bottom = 13.0
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+theme_override_font_sizes/font_size = 20
+text = "Test Gui"
 
 [node name="SystemButtons" type="HBoxContainer" parent="HBoxContainer/Body/Topbar"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_7skou")
 theme_override_constants/separation = 0
 
 [node name="MinButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _type = 2
 _icon = ExtResource("6_yijf6")
 
 [node name="MaxButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _type = 1
 _icon = ExtResource("7_hjotk")
 
 [node name="CloseButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
+theme = ExtResource("1_7skou")
 _hoverColor = Color(0.76862746, 0.16862746, 0.10980392, 1)
+
+[node name="Pages" type="Control" parent="HBoxContainer/Body"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+
+[node name="Home" type="Control" parent="HBoxContainer/Body/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Body/Pages/Home"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -214.0
+offset_right = 214.0
+offset_bottom = 214.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5bb1f")
+
+[node name="Test" type="Control" parent="HBoxContainer/Body/Pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Body/Pages/Test"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+
+[node name="CodeEdit" type="CodeEdit" parent="HBoxContainer/Body/Pages/Test/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+
+[node name="Settings" type="Control" parent="HBoxContainer/Body/Pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Body/Pages/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7skou")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_7skou")
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton2" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton3" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton4" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton5" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton6" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton7" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton8" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton9" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton10" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton11" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton12" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton13" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton14" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton15" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton16" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton17" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton18" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton19" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton20" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton21" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton22" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton23" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton24" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton25" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
+
+[node name="CheckButton26" type="CheckButton" parent="HBoxContainer/Body/Pages/Settings/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_7skou")
+theme_override_styles/focus = ExtResource("12_66m6g")
+text = "test"
 
 [node name="SideBarAnimPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HBoxContainer")

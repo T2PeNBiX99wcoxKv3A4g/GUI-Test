@@ -14,6 +14,7 @@ public partial class TabContainer : VBoxContainer
     private readonly List<NavItem> _navItems = [];
 
     [Export] private StyleBox _selectedColor = GD.Load<StyleBox>("res://styles/NavItem/Selected.tres");
+    [Export] private Label? _titleLabel;
 
     public override void _Ready()
     {
@@ -53,8 +54,17 @@ public partial class TabContainer : VBoxContainer
         var navItem = _navItems[SelectionNavItemId];
         navItem.Selection();
 
-        if (_lastSelectionNavItemId < 0 || _navItems.Count < _lastSelectionNavItemId) return;
+        if (_titleLabel != null)
+            _titleLabel.Text = navItem.GetTitle();
+
+        if (navItem.Page != null)
+            navItem.Page.Visible = true;
+
+        if (_lastSelectionNavItemId < 0 || _lastSelectionNavItemId > _navItems.Count - 1) return;
         var lastNavItem = _navItems[_lastSelectionNavItemId];
         lastNavItem.UnSelection();
+
+        if (lastNavItem.Page != null)
+            lastNavItem.Page.Visible = false;
     }
 }

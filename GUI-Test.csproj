@@ -21,24 +21,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Remove="Godot.SourceGenerators" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Remove="GodotSharpEditor" />
-      <PackageReference Remove="Godot.SourceGenerators" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Remove="GodotSharpEditor" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Remove="Godot.SourceGenerators" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Remove="GodotSharpEditor" />
-      <PackageReference Remove="Godot.SourceGenerators" />
-      <PackageReference Remove="GodotSharp" />
-      <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include=".gitignore" />
-      <Content Include="godot-source-generators-csharp-format.patch" />
+        <Content Include=".gitignore"/>
+        <Content Include="godot-source-generators-csharp-format.patch"/>
+        <Content Include="**\*.gd"/>
+        <Content Include="**\*.md"/>
+        <Content Include="**\*.lua"/>
+        <Content Remove="addons\**"/>
+        <Content Remove="godot-source-generators-csharp\**"/>
     </ItemGroup>
 </Project>

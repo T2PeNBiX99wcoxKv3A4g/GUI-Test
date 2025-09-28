@@ -13,6 +13,7 @@ public partial class NavItem : Control
     [Export] private StyleBox _hoverStyleBox = GD.Load<StyleBox>("res://styles/NavItem/Hover.tres");
     [Export] private Texture2D _icon = GD.Load<Texture2D>("res://icons/home.svg");
     [Export] private string _name = string.Empty;
+    [Export] internal Control? Page { get; private set; }
 
     internal TabContainer? TabContainer;
     internal int NavItemId = -1;
@@ -28,6 +29,8 @@ public partial class NavItem : Control
             _iconRect.Texture = _icon;
         if (_nameLabel != null)
             _nameLabel.Text = _name;
+        if (Page != null)
+            Page.Visible = false;
     }
 
     private void OnBGMouseEntered()
@@ -55,6 +58,8 @@ public partial class NavItem : Control
         _bg.AddThemeStyleboxOverride(OverrideName, _defaultStyleBox);
         _selected = false;
     }
+
+    public string GetTitle() => _name;
 
     private void OnBGGuiInput(InputEvent @event)
     {
