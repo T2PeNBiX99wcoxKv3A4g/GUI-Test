@@ -153,31 +153,39 @@ theme = ExtResource("1_7skou")
 texture = ExtResource("1_jcvd2")
 expand_mode = 1
 
-[node name="Home" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Sidebar/TabContainer/TopContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Home" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
 _name = "Home"
-Page = NodePath("../../../../Body/Pages/Home")
+Page = NodePath("../../../../../../Body/Pages/Home")
 
-[node name="Test" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
+[node name="Test" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer/VBoxContainer" node_paths=PackedStringArray("Page") instance=ExtResource("3_wj403")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
 _icon = ExtResource("5_pxv70")
 _name = "Test"
-Page = NodePath("../../../../Body/Pages/Test")
+Page = NodePath("../../../../../../Body/Pages/Test")
 
-[node name="Test2" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test2" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wj403")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
 _icon = ExtResource("4_k1go3")
 _name = "Test2"
 
-[node name="Test3" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test3" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wj403")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
 _name = "Test3"
 
-[node name="Test4" parent="HBoxContainer/Sidebar/TabContainer/TopContainer" instance=ExtResource("3_wj403")]
+[node name="Test4" parent="HBoxContainer/Sidebar/TabContainer/TopContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wj403")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
 _name = "Test4"
