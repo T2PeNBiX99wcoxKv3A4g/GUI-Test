@@ -11,12 +11,13 @@
 
 using System;
 using System.Collections.Generic;
-using Godot;
 
 namespace GUITest.scripts.Proxy;
 
 public class LuaThread : LuaObject
 {
+    private static readonly StringName NativeName = "LuaThread";
+
     public LuaThread() : base(NativeName)
     {
     }
@@ -33,9 +34,20 @@ public class LuaThread : LuaObject
     {
     }
 
-    public static implicit operator RefCounted(LuaThread self) => self.Object;
-    public static implicit operator Variant(LuaThread self) => self.Object;
-    public static explicit operator LuaThread(Variant variant) => new(variant.AsGodotObject());
+    #region Properties
+
+    public StatusEnum Status => (StatusEnum)(int)Object.Get(PropertyName.Status);
+
+    #endregion
+
+    public static implicit operator RefCounted?(LuaThread? self) => self?.Object;
+
+    public static implicit operator Variant(LuaThread? self) => self?.Object!;
+
+    public static explicit operator LuaThread?(Variant variant)
+    {
+        return variant.IfIsGodotObject(variant1 => new LuaThread(variant1));
+    }
 
     public new class PropertyName : LuaObject.PropertyName
     {
@@ -59,8 +71,6 @@ public class LuaThread : LuaObject
     {
     }
 
-    private static readonly StringName NativeName = "LuaThread";
-
     #region Enums
 
     public enum StatusEnum : long
@@ -71,7 +81,7 @@ public class LuaThread : LuaObject
         Errsyntax = 3L,
         Errmem = 4L,
         Errerr = 5L,
-        Dead = -1L,
+        Dead = -1L
     }
 
     [Flags]
@@ -80,7 +90,7 @@ public class LuaThread : LuaObject
         Call = 1L,
         Return = 2L,
         Line = 4L,
-        Count = 8L,
+        Count = 8L
     }
 
     public enum HookEvent : long
@@ -90,59 +100,35 @@ public class LuaThread : LuaObject
         Line = 2L,
         Count = 3L,
         TailCall = 4L,
-        TailReturn = 4L,
+        TailReturn = 4L
     }
 
     public enum HookResult : long
     {
         Ok = 0L,
-        Yield = -1L,
+        Yield = -1L
     }
-
-    #endregion
-
-    #region Properties
-
-    public StatusEnum Status => (StatusEnum)(int)Object.Get(PropertyName.Status);
 
     #endregion
 
     #region Methods
 
-    public StatusEnum GetStatus()
-    {
-        return (StatusEnum)(int)Object.Call(MethodName.GetStatus);
-    }
+    public StatusEnum GetStatus() => (StatusEnum)(int)Object.Call(MethodName.GetStatus);
 
-    public bool IsMainThread()
-    {
-        return (bool)Object.Call(MethodName.IsMainThread);
-    }
+    public bool IsMainThread() => (bool)Object.Call(MethodName.IsMainThread);
 
     public void SetHook(Variant hook, HookMask mask, int count = 0)
     {
         Object.Call(MethodName.SetHook, hook, (int)mask, count);
     }
 
-    public Variant GetHook()
-    {
-        return Object.Call(MethodName.GetHook);
-    }
+    public Variant GetHook() => Object.Call(MethodName.GetHook);
 
-    public HookMask GetHookMask()
-    {
-        return (HookMask)(int)Object.Call(MethodName.GetHookMask);
-    }
+    public HookMask GetHookMask() => (HookMask)(int)Object.Call(MethodName.GetHookMask);
 
-    public int GetHookCount()
-    {
-        return (int)Object.Call(MethodName.GetHookCount);
-    }
+    public int GetHookCount() => (int)Object.Call(MethodName.GetHookCount);
 
-    public LuaDebug GetStackLevelInfo(int level)
-    {
-        return (LuaDebug)Object.Call(MethodName.GetStackLevelInfo, level);
-    }
+    public LuaDebug? GetStackLevelInfo(int level) => (LuaDebug?)Object.Call(MethodName.GetStackLevelInfo, level);
 
     public LuaDebug[] GetStackInfo()
     {
@@ -151,15 +137,17 @@ public class LuaThread : LuaObject
 
         // ReSharper disable once LoopCanBeConvertedToQuery
         foreach (var obj in output.AsGodotArray())
-            ret.Add((LuaDebug)obj);
+        {
+            var value = (LuaDebug?)obj;
+            if (value == null) continue;
+            ret.Add(value);
+        }
 
         return ret.ToArray();
     }
 
-    public string GetTraceback(string message = "", int level = 0)
-    {
-        return (string)Object.Call(MethodName.GetTraceback, message, level);
-    }
+    public string GetTraceback(string message = "", int level = 0) =>
+        (string)Object.Call(MethodName.GetTraceback, message, level);
 
     #endregion
 }

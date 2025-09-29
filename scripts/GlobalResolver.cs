@@ -1,11 +1,15 @@
+global using Godot;
+global using GUITest.scripts.EX;
 using Codartesien.SourceGenerators.SceneNodeResolver;
-using Godot;
 
 namespace GUITest.scripts;
 
 /// <summary>
-/// Top-level auto-load node for resolving internal node references for all nodes added to the scene tree.
-/// from <see href="https://medium.com/@romain.mouillard.fr/optimizing-onready-in-c-with-source-generators-for-better-performance-76e87600b30a"/>>
+///     Top-level autoload node for resolving internal node references for all nodes added to the scene tree.
+///     From
+///     <see
+///         href="https://medium.com/@romain.mouillard.fr/optimizing-onready-in-c-with-source-generators-for-better-performance-76e87600b30a" />
+///     >
 /// </summary>
 public partial class GlobalResolver : Node
 {

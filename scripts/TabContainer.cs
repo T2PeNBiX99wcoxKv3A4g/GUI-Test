@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
-using Godot;
 using Godot.Collections;
 
 namespace GUITest.scripts;
 
 public partial class TabContainer : VBoxContainer
 {
-    // ReSharper disable once MemberCanBePrivate.Global
-    public int SelectionNavItemId { get; private set; } = -1;
+    private readonly List<NavItem> _navItems = [];
     private int _lastSelectionNavItemId = -1;
     private int _navItemCount;
-    private readonly List<NavItem> _navItems = [];
 
     [Export] private StyleBox _selectedColor = GD.Load<StyleBox>("res://styles/NavItem/Selected.tres");
     [Export] private Label? _titleLabel;
+
+    // ReSharper disable once MemberCanBePrivate.Global
+    public int SelectionNavItemId { get; private set; } = -1;
 
     public override void _Ready()
     {

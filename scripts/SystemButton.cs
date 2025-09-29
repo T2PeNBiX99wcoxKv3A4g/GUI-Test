@@ -1,6 +1,5 @@
 using System;
 using Codartesien.SourceGenerators.SceneNodeResolver;
-using Godot;
 
 namespace GUITest.scripts;
 
@@ -13,12 +12,13 @@ public partial class SystemButton : ColorRect
         Minimize
     }
 
-    [Export] private Types _type = Types.Close;
+    private readonly Color _defaultColor = Color.FromString("#1e1e2e", new(0.11f, 0.11f, 0.18f));
+    [Export] private Color _hoverColor = Color.FromString("#363654", new(0.11f, 0.11f, 0.18f));
     [Export] private Texture2D _icon = GD.Load<Texture2D>("res://icons/x.svg");
-    [Export] private Color _hoverColor = Color.FromString("#363654", new Color(0.11f, 0.11f, 0.18f));
-    private readonly Color _defaultColor = Color.FromString("#1e1e2e", new Color(0.11f, 0.11f, 0.18f));
 
     [SceneNode("Icon")] private TextureRect? _iconRect;
+
+    [Export] private Types _type = Types.Close;
 
     public override void _Ready()
     {
