@@ -4,11 +4,12 @@ namespace GUITest.scripts;
 
 public partial class LuaTest : Control
 {
+    private readonly LuaState _lua = new();
+
     public override void _Ready()
     {
-        var lua = new LuaState();
-        lua.OpenLibraries();
-        var result = lua.DoString("return 'Hello from lua!'");
+        _lua.OpenLibraries();
+        var result = _lua.DoString("return 'Hello from lua!'");
         var error = (LuaError?)result;
 
         if (error != null)
