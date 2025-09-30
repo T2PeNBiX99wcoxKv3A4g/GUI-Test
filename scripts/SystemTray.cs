@@ -2,19 +2,18 @@ namespace GUITest.scripts;
 
 public partial class SystemTray : StatusIndicator
 {
-    public override void _Ready()
-    {
-        // GetTree().Win
-        // GetTree().SetAutoAcceptQuit(false);
-    }
+    private const string NodePath = "Window";
 
     private void OnPressed(int mouseButton, Vector2I mousePosition)
     {
         var type = (MouseButton)mouseButton;
-        GD.Print($"Pressed {mouseButton}, {type}");
         if (type != MouseButton.Left) return;
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-        // GetTree().GetRoot().Show();
-        GetTree().GetRoot().GetNode<Window>("Window").Show();
+        var hasWindow = GetTree().GetRoot().HasNode(NodePath);
+
+        if (hasWindow)
+            GetTree().GetRoot().GetNode<Window>(NodePath).Show();
+        else
+            GetTree().GetRoot().Show();
     }
 }

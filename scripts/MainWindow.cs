@@ -12,7 +12,7 @@ public partial class MainWindow : Window
     {
         Hide();
     }
-    
+
     private void OnCloseRequested2()
     {
         GD.Print("Close Requested");
