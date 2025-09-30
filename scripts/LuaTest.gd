@@ -12,3 +12,7 @@ func _ready() -> void:
 		printerr("Error in Lua code: ", result)
 	else:
 		print(result, " ", type_string(typeof(result)))
+
+func call_from_other_test(test_value: String) -> String:
+	print(test_value)
+	return test_value

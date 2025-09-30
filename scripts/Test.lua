@@ -12,4 +12,10 @@ function test:_process(delta)
     --print(delta)
 end
 
+---@return string
+function test:callFromOtherTest(testValue)
+    print(testValue)
+    return testValue
+end
+
 return test

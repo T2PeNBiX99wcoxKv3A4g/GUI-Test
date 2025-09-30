@@ -51,9 +51,18 @@ public class LuaScript
 
     public static implicit operator Variant(LuaScript? self) => self?.Object!;
 
+    public static implicit operator LuaScript?(ScriptExtension? scriptExtension) =>
+        scriptExtension != null ? new(scriptExtension) : null;
+
     public static explicit operator LuaScript?(Variant variant)
     {
         return variant.IfIsGodotObject(variant1 => new LuaScript(variant1));
+    }
+
+    public static LuaScript? Load(string path)
+    {
+        var scriptExt = GD.Load<ScriptExtension?>(path);
+        return scriptExt != null ? (LuaScript?)scriptExt : null;
     }
 
     public class PropertyName : ScriptExtension.PropertyName
