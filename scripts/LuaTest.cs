@@ -37,5 +37,8 @@ public partial class LuaTest : Control
         GD.Print($"obj2: {obj2}");
         var ret2 = obj2?.Call("call_from_other_test", "Test value from C# in gdscript");
         GD.Print($"ret2: {ret2}");
+        
+        obj?.Free();
+        obj2?.Free();
     }
 }
