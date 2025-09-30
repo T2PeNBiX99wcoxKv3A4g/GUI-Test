@@ -176,12 +176,8 @@ public class LuaState
     public Variant DoBuffer(byte[] chunk, string chunkname = "", LoadMode mode = 0, LuaTable? env = null) =>
         Object.Call(MethodName.DoBuffer, chunk, chunkname, (int)mode, env);
 
-    public Variant DoString(string chunk, string chunkname = "", LuaTable? env = null)
-    {
-        var ret = Object.Call(MethodName.DoString, chunk, chunkname, env);
-        GD.Print(ret);
-        return ret;
-    }
+    public Variant DoString(string chunk, string chunkname = "", LuaTable? env = null) =>
+        Object.Call(MethodName.DoString, chunk, chunkname, env);
 
     public Variant DoFile(string filename, LoadMode mode = 0, LuaTable? env = null) =>
         Object.Call(MethodName.DoFile, filename, (int)mode, env);

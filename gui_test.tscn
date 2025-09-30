@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://caugk844j81se"]
+[gd_scene load_steps=27 format=3 uid="uid://caugk844j81se"]
 
 [ext_resource type="Theme" uid="uid://d38kgk7ybgfol" path="res://styles/MainTheme.tres" id="1_7skou"]
 [ext_resource type="Script" uid="uid://dpuoby8j53ofm" path="res://scripts/TabContainer.cs" id="1_66m6g"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://bgrcs8eh8ocps" path="res://icons/maximize.svg" id="7_hjotk"]
 [ext_resource type="StyleBox" uid="uid://b4r3sg5qjgjer" path="res://styles/CheckButton/FocusEmpty.tres" id="12_66m6g"]
 [ext_resource type="Script" uid="uid://blhy18wn1ep0j" path="res://scripts/LuaTest.cs" id="15_74fo6"]
+[ext_resource type="Script" uid="uid://c4w84lbst8f1r" path="res://scripts/Test.lua" id="16_uw01g"]
+[ext_resource type="Script" uid="uid://cu1lca2emni2y" path="res://scripts/SystemTray.cs" id="17_m1ky3"]
+[ext_resource type="Texture2D" uid="uid://k8kkpenywqff" path="res://icon.svg" id="18_3mqea"]
+[ext_resource type="PackedScene" uid="uid://duywcywqx7qhh" path="res://components/system_tray_menu.tscn" id="19_3mqea"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4uxl"]
 bg_color = Color(0.11764706, 0.11764706, 0.18039216, 1)
@@ -70,7 +74,7 @@ _data = {
 &"sidebar_anim": SubResource("Animation_jcvd2")
 }
 
-[node name="Control" type="Control"]
+[node name="MainWindow" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,6 +154,7 @@ offset_top = -15.0
 offset_right = 50.0
 offset_bottom = 15.0
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_7skou")
 texture = ExtResource("1_jcvd2")
 expand_mode = 1
@@ -245,14 +250,14 @@ theme_override_constants/separation = 0
 [node name="MinButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
-_type = 2
 _icon = ExtResource("6_yijf6")
+_type = 2
 
 [node name="MaxButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
 theme = ExtResource("1_7skou")
-_type = 1
 _icon = ExtResource("7_hjotk")
+_type = 1
 
 [node name="CloseButton" parent="HBoxContainer/Body/Topbar/SystemButtons" instance=ExtResource("5_373u5")]
 layout_mode = 2
@@ -528,10 +533,28 @@ libraries = {
 script = ExtResource("4_0r7qg")
 
 [node name="LuaTest" type="Control" parent="."]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("15_74fo6")
+
+[node name="LuaTest2" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = -142.0
+offset_top = -77.0
+offset_right = -102.0
+offset_bottom = -37.0
+script = ExtResource("16_uw01g")
+
+[node name="SystemTray" type="StatusIndicator" parent="."]
+tooltip = "GUI Test"
+icon = ExtResource("18_3mqea")
+menu = NodePath("SystemTrayMenu")
+script = ExtResource("17_m1ky3")
+
+[node name="SystemTrayMenu" parent="SystemTray" instance=ExtResource("19_3mqea")]
+visible = false
 
 [connection signal="gui_input" from="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton" to="HBoxContainer/Sidebar/TabContainer/TopContainer/ToggleButton" method="OnGuiInput"]
 [connection signal="gui_input" from="HBoxContainer/Body/Topbar/Titlebar" to="HBoxContainer/Body/Topbar/Titlebar" method="OnGuiInput"]
+[connection signal="pressed" from="SystemTray" to="SystemTray" method="OnPressed"]
